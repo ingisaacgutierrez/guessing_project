@@ -5,7 +5,7 @@
     "description": "API for the Guessing Game project",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "guessing-project.onrender.com",
   "basePath": "/",
   "tags": [
     {
@@ -17,7 +17,7 @@
       "description": "Operations about admins of the guessing game"
     }
   ],
-  "schemes": ["http"],
+  "schemes": ["https"],
   "paths": {
     "/users/": {
       "get": {

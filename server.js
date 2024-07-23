@@ -2,9 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('./db/connect');
 const userRoutes = require('./routes/user');
-const adminRoutes = require('./routes/admin'); // Asegúrate de que este archivo existe
+const adminRoutes = require('./routes/admin'); 
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json'); // Asegúrate de que el path a tu archivo swagger.json es correcto
+const swaggerDocument = require('./swagger.json');
 
 const port = process.env.PORT || 8080;
 const app = express();

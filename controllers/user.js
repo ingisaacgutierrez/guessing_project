@@ -14,7 +14,6 @@ const getAll = async (req, res) => {
   }
 };
 
-// Obtener un solo usuario por ID
 const getSingle = async (req, res) => {
   const userId = req.params.id;
   try {
@@ -28,10 +27,10 @@ const getSingle = async (req, res) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(result);
     } else {
-      res.status(404).json({ message: 'User Not Found' });
+      res.status(404).json({ message: 'Admin Not Found' });
     }
   } catch (error) {
-    res.status(500).json({ message: 'An error occurred while retrieving the user', error });
+    res.status(500).json({ message: 'An error occurred while retrieving the admin', error });
   }
 };
 
