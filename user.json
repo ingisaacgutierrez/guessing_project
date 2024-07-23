@@ -1,0 +1,37 @@
+{
+    "_id": "66897e07a2df76453a6b2260",
+    "username": "JohnDoe",
+    "email": "johndoe@example.com",
+    "password": "securepassword123",
+    "highestScore": 95,
+    "numberOfErrors": 10,
+    "scoreHistory": [
+      {
+        "date": "2024-06-01",
+        "score": 80
+      },
+      {
+        "date": "2024-06-05",
+        "score": 85
+      },
+      {
+        "date": "2024-06-10",
+        "score": 95
+      }
+    ],
+    "missed_question": [
+      {
+        "questionId": "q1",
+        "question": "What is the capital of France?",
+        "correctAnswer": "Paris",
+        "userAnswer": "London"
+      },
+      {
+        "questionId": "q2",
+        "question": "What is 2 + 2?",
+        "correctAnswer": "4",
+        "userAnswer": "5"
+      }
+    ]
+  }
+  

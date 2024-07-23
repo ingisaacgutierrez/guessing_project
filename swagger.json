@@ -1,0 +1,423 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Guessing Game API",
+    "description": "API for the Guessing Game project",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "User",
+      "description": "Operations about users of the guessing game"
+    },
+    {
+      "name": "Admin",
+      "description": "Operations about admins of the guessing game"
+    }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/users/": {
+      "get": {
+        "tags": ["User"],
+        "description": "Retrieve a list of users",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": ["User"],
+        "description": "Create a new user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "Isaac"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "isaac@test.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "pass456"
+                },
+                "highestScore": {
+                  "type": "integer",
+                  "example": 100
+                },
+                "numberOfErrors": {
+                  "type": "integer",
+                  "example": 5
+                },
+                "scoreHistory": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-06-01"
+                      },
+                      "score": {
+                        "type": "integer",
+                        "example": 80
+                      }
+                    }
+                  },
+                  "example": [
+                    { "date": "2024-06-01", "score": 80 },
+                    { "date": "2024-06-05", "score": 85 }
+                  ]
+                },
+                "missed_question": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "questionId": {
+                        "type": "string",
+                        "example": "q1"
+                      },
+                      "question": {
+                        "type": "string",
+                        "example": "What is the capital of France?"
+                      },
+                      "correctAnswer": {
+                        "type": "string",
+                        "example": "Paris"
+                      },
+                      "userAnswer": {
+                        "type": "string",
+                        "example": "London"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "questionId": "q1",
+                      "question": "What is the capital of France?",
+                      "correctAnswer": "Paris",
+                      "userAnswer": "London"
+                    },
+                    {
+                      "questionId": "q2",
+                      "question": "What is 2 + 2?",
+                      "correctAnswer": "4",
+                      "userAnswer": "5"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": ["User"],
+        "description": "Retrieve a user by ID",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["User"],
+        "description": "Update a user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "Isaac"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "isaac@test.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "pass456"
+                },
+                "highestScore": {
+                  "type": "integer",
+                  "example": 100
+                },
+                "numberOfErrors": {
+                  "type": "integer",
+                  "example": 5
+                },
+                "scoreHistory": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-06-01"
+                      },
+                      "score": {
+                        "type": "integer",
+                        "example": 80
+                      }
+                    }
+                  },
+                  "example": [
+                    { "date": "2024-06-01", "score": 80 },
+                    { "date": "2024-06-05", "score": 85 }
+                  ]
+                },
+                "missed_question": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "questionId": {
+                        "type": "string",
+                        "example": "q1"
+                      },
+                      "question": {
+                        "type": "string",
+                        "example": "What is the capital of France?"
+                      },
+                      "correctAnswer": {
+                        "type": "string",
+                        "example": "Paris"
+                      },
+                      "userAnswer": {
+                        "type": "string",
+                        "example": "London"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "questionId": "q1",
+                      "question": "What is the capital of France?",
+                      "correctAnswer": "Paris",
+                      "userAnswer": "London"
+                    },
+                    {
+                      "questionId": "q2",
+                      "question": "What is 2 + 2?",
+                      "correctAnswer": "4",
+                      "userAnswer": "5"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "description": "Delete a user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/admins/": {
+      "get": {
+        "tags": ["Admin"],
+        "description": "Retrieve a list of admins",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Admin"],
+        "description": "Create a new admin",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "AdminUser"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "adminuser@example.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "adminsecurepassword123"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/admins/{id}": {
+      "get": {
+        "tags": ["Admin"],
+        "description": "Retrieve an admin by ID",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Admin"],
+        "description": "Update an admin by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "AdminUser"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "adminuser@example.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "adminsecurepassword123"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Admin"],
+        "description": "Delete an admin by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
