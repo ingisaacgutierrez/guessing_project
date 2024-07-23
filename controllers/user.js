@@ -145,4 +145,19 @@ const deleteUser = [
   }
 ];
 
-module.exports = { getAll, getSingle, createUser, updateUser, deleteUser };
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await mongodb.getDb().db().collection('user').findOne({ email, password });
+    if (user) {
+      // Genera un token o simplemente responde con éxito
+      res.status(200).json({ success: true, token: 'dummy-token' });
+    } else {
+      res.status(401).json({ success: false, message: 'Invalid credentials' });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'An error occurred during login', error });
+  }
+};
+
+module.exports = { getAll, getSingle, createUser, updateUser, deleteUser, login };
